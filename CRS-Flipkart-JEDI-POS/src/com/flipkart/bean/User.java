@@ -15,10 +15,6 @@ public class User {
         this.contactNo = contactNo;
     }
 
-    public User() {
-
-    }
-
     public String getUserId() {
         return userId;
     }
