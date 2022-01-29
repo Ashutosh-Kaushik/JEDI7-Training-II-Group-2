@@ -2,27 +2,24 @@ package com.flipkart.bean;
 
 public class Student extends User{
 
-    private int userId;
+    private String studentId;
     private int semester;
     private String grade;
     private boolean feeStatus;
 
-    public Student(int userId, String userName, String emailId, String password, String contactNo, int userId1, int semester, String grade, boolean feeStatus) {
+    public Student(String userId, String userName, String emailId, String password, String contactNo, String studentId, int semester, String grade, boolean feeStatus) {
         super(userId, userName, emailId, password, contactNo);
-        this.userId = userId1;
+        this.studentId = studentId;
         this.semester = semester;
         this.grade = grade;
         this.feeStatus = feeStatus;
     }
-
-    @Override
-    public int getUserId() {
-        return userId;
+    public String getStudentId() {
+        return studentId;
     }
 
-    @Override
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public int getSemester() {

@@ -1,25 +1,23 @@
 package com.flipkart.bean;
 
 public class Professor extends User{
-    private int userId;
+    private String professorId;
     private String areaOfExpertise;
     private int yearsOfExperience;
 
-    public Professor(int userId, String userName, String emailId, String password, String contactNo, int userId1, String areaOfExpertise, int yearsOfExperience) {
+    public Professor(String userId, String userName, String emailId, String password, String contactNo, String professorId, String areaOfExpertise, int yearsOfExperience) {
         super(userId, userName, emailId, password, contactNo);
-        this.userId = userId1;
+        this.professorId = professorId;
         this.areaOfExpertise = areaOfExpertise;
         this.yearsOfExperience = yearsOfExperience;
     }
 
-    @Override
-    public int getUserId() {
-        return userId;
+    public String getProfessorId() {
+        return professorId;
     }
 
-    @Override
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setProfessorId(String professorId) {
+        this.professorId = professorId;
     }
 
     public String getAreaOfExpertise() {
