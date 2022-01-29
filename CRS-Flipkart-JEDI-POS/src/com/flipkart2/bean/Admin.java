@@ -1,4 +1,4 @@
-package com.flipkart.bean;
+package com.flipkart2.bean;
 
 public class Admin extends User{
     private int userId;

@@ -1,4 +1,4 @@
-package com.flipkart.bean;
+package com.flipkart2.bean;
 
 public class Student extends User{
 
@@ -6,13 +6,15 @@ public class Student extends User{
     private int semester;
     private String grade;
     private boolean feeStatus;
+    private boolean isApproved;
 
-    public Student(int userId, String userName, String emailId, String password, String contactNo, int userId1, int semester, String grade, boolean feeStatus) {
+    public Student(int userId, String userName, String emailId, String password, String contactNo, int userId1, int semester, String grade, boolean feeStatus,boolean isApproved) {
         super(userId, userName, emailId, password, contactNo);
         this.userId = userId1;
         this.semester = semester;
         this.grade = grade;
         this.feeStatus = feeStatus;
+        this.isApproved = isApproved;
     }
 
     @Override
@@ -47,5 +49,13 @@ public class Student extends User{
 
     public void setFeeStatus(boolean feeStatus) {
         this.feeStatus = feeStatus;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
 }

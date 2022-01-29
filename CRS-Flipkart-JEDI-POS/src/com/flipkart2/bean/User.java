@@ -1,4 +1,4 @@
-package com.flipkart.bean;
+package com.flipkart2.bean;
 
 public class User {
     private int userId;
@@ -7,6 +7,8 @@ public class User {
     private String password;
     private String contactNo;
 
+    public User(){
+            }
     public User(int userId, String userName, String emailId, String password, String contactNo) {
         this.userId = userId;
         this.userName = userName;

@@ -1,4 +1,4 @@
-package com.flipkart.bean;
+package com.flipkart2.bean;
 
 public class PaymentBill {
     private String paymentType;

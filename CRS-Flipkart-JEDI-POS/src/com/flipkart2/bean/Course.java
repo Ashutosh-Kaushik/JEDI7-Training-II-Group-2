@@ -1,10 +1,10 @@
-package com.flipkart.bean;
+package com.flipkart2.bean;
 
 public class Course {
     private int courseId;
     private String courseName;
 
-    public Course(int courseId, String courseName) {
+    public Course() {
         this.courseId = courseId;
         this.courseName = courseName;
     }
