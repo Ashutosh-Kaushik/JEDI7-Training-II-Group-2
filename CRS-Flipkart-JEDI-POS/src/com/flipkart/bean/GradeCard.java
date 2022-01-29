@@ -1,14 +1,14 @@
 package com.flipkart.bean;
 
+import java.util.HashMap;
+
 public class GradeCard {
     private int userId;
-    private int courseId;
-    private String grade;
+    private HashMap<String, String> grades;
 
-    public GradeCard(int userId, int courseId, String grade) {
+    public GradeCard(int userId, HashMap<String, String> grades) {
         this.userId = userId;
-        this.courseId = courseId;
-        this.grade = grade;
+        this.grades = grades;
     }
 
     public int getUserId() {
@@ -19,19 +19,11 @@ public class GradeCard {
         this.userId = userId;
     }
 
-    public int getCourseId() {
-        return courseId;
+    public HashMap<String, String> getGrades() {
+        return grades;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void setGrades(HashMap<String, String> grades) {
+        this.grades = grades;
     }
 }
