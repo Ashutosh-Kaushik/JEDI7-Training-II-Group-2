@@ -7,6 +7,7 @@ import java.sql.*;
 public class ProfessorOperations implements ProfessorUtilsInterface {
     public Professor validateCredentialsWithDB(int userId,String password){
         try{
+            //establishing connection
             Class.forName("com.mysql.jdbc.Driver");
             Connection con= DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/crsregistration","root","root");
