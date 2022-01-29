@@ -8,14 +8,14 @@ public class ProfessorOperations implements ProfessorUtilsInterface {
     public Professor validateCredentialsWithDB(int userId,String password){
         try{
             //establishing connection
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crsregistration","root","root");
+                    "jdbc:mysql://localhost:3306/crs","root","password");
             String SQL = "select * from user,professor where user.userId="+userId+" and professor.professorId="+userId;
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery(SQL);
             if(rs.next()) {
-                Professor professor=new Professor(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8));
+                Professor professor=new Professor();
                 //System.out.println(rs.getString(1)+"  "+rs.getString(2)+"  "+rs.getString(3)+"  "+rs.getString(4)+"  "+rs.getString(5)+"  "+rs.getString(6)+"  "+rs.getString(7)+"  "+rs.getString(8));
                 con.close();
                 return professor;

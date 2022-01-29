@@ -26,7 +26,7 @@ public class AdminMenu {
 
                 case 1:
                     System.out.println("Enter Prof ID");
-                    int profId = in.nextInt();
+                    String profId = in.next();
                     System.out.println("Name:");
                     String name = in.next();
                     System.out.println("Professor Email id ");

@@ -5,6 +5,12 @@ public class Professor extends User{
     private String areaOfExpertise;
     private int yearsOfExperience;
 
+    public Professor() {
+        this.professorId = professorId;
+        this.areaOfExpertise = areaOfExpertise;
+        this.yearsOfExperience = yearsOfExperience;
+    }
+
     public Professor(String userId, String userName, String emailId, String password, String contactNo, String professorId, String areaOfExpertise, int yearsOfExperience) {
         super(userId, userName, emailId, password, contactNo);
         this.professorId = professorId;
