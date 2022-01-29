@@ -13,13 +13,7 @@ public interface StudentDaoInterface
 
     String getfeeStatus(String studentId, int semester, String paymentID) throws SQLException;
 
-    Student getStudent(String studentId) throws SQLException;
-
-    ArrayList<Student> getAllStudents() throws SQLException;
-
     ArrayList<Course> registeredCoursesList(String studentId);
-
-    String removeStudent(String studentId) throws SQLException;
 
     GradeCard viewGrades(String studentId) throws SQLException;
 

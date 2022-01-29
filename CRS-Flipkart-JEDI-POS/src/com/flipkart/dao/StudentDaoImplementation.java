@@ -43,44 +43,6 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         return null;
     }
 
-    @Override
-    public Student getStudent(String studentId) throws SQLException {
-        Connection conn = DbUtil.getConnection();
-        String sql = "SELECT * FROM student where studentId='studentId'";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
-        while(rs.next()) {
-            Student student = new Student();
-            student.setUserId(rs.getString("studentId"));
-            student.setUserName(rs.getString("studentName"));
-            student.setContactNo(rs.getString("contactNo"));
-            student.setSemester(rs.getInt("semester"));
-            student.setGrade(rs.getString("grade"));
-            student.setFeeStatus(rs.getBoolean("feeStatus"));
-            return student;
-        }
-        return null;
-    }
-
-    @Override
-    public ArrayList<Student> getAllStudents() throws SQLException {
-        ArrayList<Student> students = new ArrayList<Student>();
-            Connection conn = DbUtil.getConnection();
-            String sql = "SELECT * FROM student";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
-            while(rs.next()) {
-                Student student = new Student();
-                student.setUserId(rs.getString("studentId"));
-                student.setUserName(rs.getString("studentName"));
-                student.setContactNo(rs.getString("contactNo"));
-                student.setSemester(rs.getInt("semester"));
-                student.setGrade(rs.getString("grade"));
-                student.setFeeStatus(rs.getBoolean("feeStatus"));
-                students.add(student);
-            }
-        return students;
-    }
 
     @Override
     public ArrayList<Course> registeredCoursesList(String studentId) {
