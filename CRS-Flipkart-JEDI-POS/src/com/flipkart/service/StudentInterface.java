@@ -1,9 +1,11 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
+
 public interface StudentInterface {
 
-    public String registerStudent(String studentId,String studentName,String contactNo,int semester);
-
+  //  public Student validateCredentials(String userId, String password);
 
 }
 

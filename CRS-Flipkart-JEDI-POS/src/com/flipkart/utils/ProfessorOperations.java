@@ -5,12 +5,10 @@ import com.flipkart.bean.Professor;
 import java.sql.*;
 
 public class ProfessorOperations implements ProfessorUtilsInterface {
-    public Professor validateCredentialsWithDB(int userId,String password){
+    public Professor validateCredentialsWithDB(String userId,String password){
         try{
             //establishing connection
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crs","root","password");
+            Connection con=DBUtils.getConnection();
             String SQL = "select * from user,professor where user.userId="+userId+" and professor.professorId="+userId;
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery(SQL);

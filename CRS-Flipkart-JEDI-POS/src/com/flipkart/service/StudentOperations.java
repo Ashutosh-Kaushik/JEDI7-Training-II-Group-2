@@ -1,11 +1,14 @@
 package com.flipkart.service;
 
-public class StudentOperations {
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
+import com.flipkart.bean.User;
+import com.flipkart.dao.StudentDaoImplementation;
+import com.flipkart.utils.DBUtils;
 
-    public String registerStudent(String studentId,String studentName,String contactNo,int semester) {
+import java.sql.*;
 
+public class StudentOperations implements StudentInterface {
 
-        return null;
-    }
 
 }

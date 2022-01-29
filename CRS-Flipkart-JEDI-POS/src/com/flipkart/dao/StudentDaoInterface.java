@@ -9,11 +9,17 @@ import java.util.ArrayList;
 
 public interface StudentDaoInterface
 {
-    String addStudent(Student student) throws SQLException, ClassNotFoundException;
+    String addStudent() throws SQLException, ClassNotFoundException;
+
+    Student getStudent(String studentId) throws SQLException;
+
+    Student validateCredentials(String studentId, String password);
 
     String getfeeStatus(String studentId, int semester, String paymentID) throws SQLException;
 
     ArrayList<Course> registeredCoursesList(String studentId);
+
+    String removeStudent(String studentId) throws SQLException;
 
     GradeCard viewGrades(String studentId) throws SQLException;
 
