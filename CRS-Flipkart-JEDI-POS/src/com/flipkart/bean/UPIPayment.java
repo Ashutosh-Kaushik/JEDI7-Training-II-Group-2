@@ -1,4 +1,4 @@
-package com.flipkart2.bean;
+package com.flipkart.bean;
 
 public class UPIPayment {
     private String upiId;

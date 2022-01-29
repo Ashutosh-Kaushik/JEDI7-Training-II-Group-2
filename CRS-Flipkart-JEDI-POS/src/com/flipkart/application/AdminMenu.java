@@ -1,9 +1,9 @@
-package com.flipkart2.application;
+package com.flipkart.application;
 
-import com.flipkart2.bean.Course;
-import com.flipkart2.bean.Professor;
-import com.flipkart2.service.AdminInterface;
-import com.flipkart2.service.AdminOperation;
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminOperation;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
-package com.flipkart2.dao;
+package com.flipkart.dao;
 
-import com.flipkart2.bean.Course;
-import com.flipkart2.bean.Professor;
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
 
 public interface AdminDaoInterface {
     default boolean addProfessor(Professor professor) {

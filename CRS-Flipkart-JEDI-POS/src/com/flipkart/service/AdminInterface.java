@@ -1,7 +1,7 @@
-package com.flipkart2.service;
+package com.flipkart.service;
 
-import com.flipkart2.bean.Course;
-import com.flipkart2.bean.Professor;
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
 
 public interface AdminInterface {
     public void addProfessor(Professor professor);

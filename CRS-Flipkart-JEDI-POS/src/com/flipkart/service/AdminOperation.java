@@ -1,9 +1,9 @@
-package com.flipkart2.service;
+package com.flipkart.service;
 
-import com.flipkart2.bean.Course;
-import com.flipkart2.bean.Professor;
-import com.flipkart2.dao.AdminDaoImplementation;
-import com.flipkart2.dao.AdminDaoInterface;
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+import com.flipkart.dao.AdminDaoImplementation;
+import com.flipkart.dao.AdminDaoInterface;
 
 public class AdminOperation implements AdminInterface {
     private static volatile AdminOperation instance = null;

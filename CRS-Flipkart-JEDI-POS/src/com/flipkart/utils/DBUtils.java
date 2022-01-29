@@ -1,4 +1,4 @@
-package com.flipkart2.utils;
+package com.flipkart.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

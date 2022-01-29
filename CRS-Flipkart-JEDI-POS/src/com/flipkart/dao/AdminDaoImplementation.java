@@ -1,8 +1,8 @@
-package com.flipkart2.dao;
+package com.flipkart.dao;
 
-import com.flipkart2.bean.Course;
-import com.flipkart2.bean.Professor;
-import com.flipkart2.utils.DBUtils;
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+import com.flipkart.utils.DBUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
