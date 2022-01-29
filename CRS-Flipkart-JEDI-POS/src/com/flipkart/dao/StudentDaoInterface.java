@@ -15,7 +15,7 @@ public interface StudentDaoInterface
 
     Student validateCredentials(String studentId, String password);
 
-    String getfeeStatus(String studentId, int semester, String paymentID) throws SQLException;
+    String getfeeStatus(String studentId) throws SQLException;
 
     ArrayList<Course> registeredCoursesList(String studentId);
 

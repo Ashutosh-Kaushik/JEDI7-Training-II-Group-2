@@ -87,9 +87,9 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         return null;
     }
     @Override
-    public String getfeeStatus(String studentId, int semester, String paymentId) throws SQLException {
+    public String getfeeStatus(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT feeStatus FROM student";
+        String sql = "SELECT feeStatus FROM student where studentId="+studentId;
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())
@@ -98,7 +98,6 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         }
         return null;
     }
-
 
     @Override
     public ArrayList<Course> registeredCoursesList(String studentId) {

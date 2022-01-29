@@ -1,5 +1,7 @@
 package com.flipkart.application;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.StudentDaoImplementation;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,7 @@ public class CrsStudentMenu {
         public void studentMenu(Student student) throws IOException, SQLException {
             while(true) {
                 System.out.println("---Student Menu-----");
-                System.out.println("1.view Details\n2.view Courses\n3.Register for Courses\n4.View Report Card for a student\n5.Pay Fee\n6. Check Fee Status\n7.Exit\n");
+                System.out.println("1.view Details\n2.view Courses\n3.Register for Courses\n4.View Report Card\n5.Pay Fee\n6. Check Fee Status\n7.Exit\n");
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("Enter the choice");
                 int option = Integer.parseInt(br.readLine());
@@ -25,18 +27,22 @@ public class CrsStudentMenu {
                         break;
                     case 3:
                         System.out.println("Register for the courses");
+
                         break;
                     case 4:
-                        System.out.println("View enrolled students in each course");
+                        System.out.println("View Report Card");
                         break;
                     case 5:
-                        System.out.println("Make a report card for a student");
+                        System.out.println("Pay Fee");
+
                         break;
                     case 6:
-                        return;
+                        System.out.println("Check Fee Status");
+                        StudentDaoImplementation studentDaoImplementation=new StudentDaoImplementation();
+                        System.out.println(studentDaoImplementation.getfeeStatus(student.getUserId()));
+                        break;
                     default:
-                        System.out.println("Invalid Choice");
-
+                        System.out.println("Exit");
                 }
             }
         }
