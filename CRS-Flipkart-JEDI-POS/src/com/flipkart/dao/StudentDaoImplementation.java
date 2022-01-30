@@ -8,7 +8,6 @@ import com.flipkart.utils.DBUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class StudentDaoImplementation implements StudentDaoInterface {
@@ -100,7 +99,63 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     }
 
     @Override
-    public ArrayList<Course> registeredCoursesList(String studentId) {
+    public ArrayList<Integer> registeredCoursesList(String studentId) throws SQLException {
+        Connection conn = DBUtils.getConnection();
+        String sql = "SELECT * FROM registrar where userId="+studentId;
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        ArrayList<Integer> courses=new ArrayList<>();
+        while(rs.next())
+        {
+            courses.add(rs.getInt(2));
+        }
+        return courses;
+    }
+
+    @Override
+    public void registerCourses(String studentId, ArrayList<Integer> courses) throws SQLException {
+        Connection connection = DBUtils.getConnection();
+        Statement stmt = connection.createStatement();
+        for(Integer course:courses) {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_REGISTERCOURSE_QUERY);
+            preparedStatement.setString(1, studentId);
+            preparedStatement.setInt(2, course);
+            preparedStatement.setString(3, " NA ");
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    @Override
+    public ArrayList<Course> viewCourses() throws SQLException {
+        ArrayList<Course> courses=new ArrayList<Course>();
+        Connection conn = DBUtils.getConnection();
+        String sql = "SELECT * FROM course";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+        {
+          Course course=new Course();
+          course.setCourseId(rs.getInt(1));
+          course.setCourseName(rs.getString(2));
+          courses.add(course);
+        }
+        return courses;
+    }
+
+    @Override
+    public Course viewCourse(int courseId) throws SQLException {
+        ArrayList<Course> courses=new ArrayList<Course>();
+        Connection conn = DBUtils.getConnection();
+        String sql = "SELECT * FROM course where courseId="+courseId;
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+        {
+            Course course=new Course();
+            course.setCourseId(rs.getInt(1));
+            course.setCourseName(rs.getString(2));
+            return course;
+        }
         return null;
     }
 
@@ -119,22 +174,17 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     }
 
     @Override
-    public GradeCard viewGrades(String studentId) throws SQLException {
-        GradeCard gradeCard=null;
+    public ArrayList<GradeCard> viewGrades(String studentId) throws SQLException {
+    ArrayList<GradeCard> gradeCards=new ArrayList<>();
         Connection conn = DBUtils.getConnection();
-        PreparedStatement stmt=conn.prepareStatement(SQLQueriesConstants.VIEW_GRADE_CARD);
-        stmt.setString(1, studentId);
-        ResultSet queryResult1 = stmt.executeQuery();
-        stmt = conn.prepareStatement(SQLQueriesConstants.VIEW_REGISTERED_COURSES);
-        stmt.setString(1, studentId);
-        ResultSet queryResult2 = stmt.executeQuery();
-        HashMap<String, String> grades = new HashMap<String, String>();
-        while(queryResult2.next()) {
-                grades.put(queryResult2.getString("course.courseId"), queryResult2.getString("gradeCard.grade"));
+        String sql = "SELECT * FROM registrar where userId="+studentId;
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+        {
+            GradeCard g=new GradeCard(rs.getString(1), rs.getInt(2),rs.getString(3));
+            gradeCards.add(g);
         }
-        while(queryResult1.next()) {
-
-        }
-        return gradeCard;
+        return gradeCards;
     }
 }

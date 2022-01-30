@@ -1,29 +1,37 @@
 package com.flipkart.bean;
 
-import java.util.HashMap;
-
 public class GradeCard {
-    private int userId;
-    private HashMap<String, String> grades;
+    private String userId;
+    private int courseId;
+    private String grade;
 
-    public GradeCard(int userId, HashMap<String, String> grades) {
+    public GradeCard(String userId, int courseId, String grade) {
         this.userId = userId;
-        this.grades = grades;
+        this.courseId = courseId;
+        this.grade = grade;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public HashMap<String, String> getGrades() {
-        return grades;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public void setGrades(HashMap<String, String> grades) {
-        this.grades = grades;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 }

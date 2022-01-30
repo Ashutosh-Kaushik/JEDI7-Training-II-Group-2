@@ -17,10 +17,16 @@ public interface StudentDaoInterface
 
     String getfeeStatus(String studentId) throws SQLException;
 
-    ArrayList<Course> registeredCoursesList(String studentId);
+    ArrayList<Integer> registeredCoursesList(String studentId) throws SQLException;
+
+    void registerCourses(String studentId,ArrayList<Integer> courses) throws SQLException;
+
+    ArrayList<Course> viewCourses() throws SQLException;
+
+    Course viewCourse(int courseId) throws SQLException;
 
     String removeStudent(String studentId) throws SQLException;
 
-    GradeCard viewGrades(String studentId) throws SQLException;
+    ArrayList<GradeCard> viewGrades(String studentId) throws SQLException;
 
 }
