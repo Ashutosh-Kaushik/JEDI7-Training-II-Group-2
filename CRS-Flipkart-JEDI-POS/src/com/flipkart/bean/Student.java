@@ -5,10 +5,10 @@ public class Student extends User{
     private String userId;
     private int semester;
     private String grade;
-    private boolean feeStatus;
+    private String feeStatus;
     private boolean isApproved;
 
-    public Student(String userId, String userName, String emailId, String password, String contactNo, String userId1, int semester, String grade, boolean feeStatus,boolean isApproved) {
+    public Student(String userId, String userName, String emailId, String password, String contactNo, String userId1, int semester, String grade, String feeStatus,boolean isApproved) {
         super(userId, userName, emailId, password, contactNo);
         this.userId = userId1;
         this.semester = semester;
@@ -43,11 +43,11 @@ public class Student extends User{
         this.grade = grade;
     }
 
-    public boolean isFeeStatus() {
+    public String isFeeStatus() {
         return feeStatus;
     }
 
-    public void setFeeStatus(boolean feeStatus) {
+    public void setFeeStatus(String feeStatus) {
         this.feeStatus = feeStatus;
     }
 

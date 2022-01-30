@@ -10,13 +10,12 @@ public class DBUtils {
         if (con != null) return con;
         else {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/crs?autoReconnect=true&useSSL=false", "root", "password");
+                        "jdbc:mysql://localhost:3306/crs?autoReconnect=true&useSSL=false", "root", "root");
             } catch (Exception e) {
                 System.out.println(e);
             }
-
             return con;
         }
     }
