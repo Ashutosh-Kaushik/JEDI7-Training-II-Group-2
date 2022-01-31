@@ -1,8 +1,10 @@
 package com.flipkart.application;
 
+import com.flipkart.bean.Admin;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.business.ProfessorService;
+import com.flipkart.dao.AdminDaoImplementation;
 import com.flipkart.dao.StudentDaoImplementation;
 import com.flipkart.service.StudentOperations;
 
@@ -50,7 +52,18 @@ public class CrsLoginMenu {
                 }
                 break;
             case 3:
-                System.out.println("Admin");
+                System.out.println("Validating Admin credentials");
+                AdminDaoImplementation adminDaoImplementation=new AdminDaoImplementation();
+                boolean x= adminDaoImplementation.validateCredentials(userId,password);
+                if(x==true){
+                    System.out.println("Hey Admin. Welcome to the portal");
+                    AdminMenu adminMenu=new AdminMenu();
+                    adminMenu.adminMenu();
+                }
+                else{
+                    System.out.println("Invalid User ID");
+                    return;
+                }
                 break;
             default:
                 System.out.println("Invalid Choice");
