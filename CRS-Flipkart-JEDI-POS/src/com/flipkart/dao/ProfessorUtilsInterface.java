@@ -1,4 +1,4 @@
-package com.flipkart.utils;
+package com.flipkart.dao;
 
 import com.flipkart.bean.Professor;
 

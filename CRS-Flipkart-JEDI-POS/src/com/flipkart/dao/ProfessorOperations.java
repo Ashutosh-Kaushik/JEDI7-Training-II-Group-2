@@ -1,17 +1,19 @@
-package com.flipkart.utils;
+package com.flipkart.dao;
 
+import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.dao.ProfessorUtilsInterface;
+import com.flipkart.utils.ConnectionWithDB;
 
 import java.sql.*;
 
 public class ProfessorOperations implements ProfessorUtilsInterface {
+
     public Professor validateCredentialsWithDB(int userId,String password){
         try{
-            //establishing connection
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/crsregistration","root","root");
-            String SQL = "select * from user,professor where user.userId="+userId+" and professor.professorId="+userId;
+            ConnectionWithDB connObj=new ConnectionWithDB();
+            Connection con=connObj.getConnection();
+            String SQL = "select * from user,professor where user.userId like '"+userId+"' and professor.professorId like '"+userId+"' and user.password like '"+password+"'";
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery(SQL);
             if(rs.next()) {
@@ -54,29 +56,24 @@ public class ProfessorOperations implements ProfessorUtilsInterface {
         return false;
     }*/
 
-    //public static void main(String[] args)throws ClassNotFoundException, SQLException {
-        //validateCredentials2(102);
-        /*Class.forName("com.mysql.jdbc.Driver");
-        Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/crsregistration","root","root");
-        String SQL = "INSERT INTO user(userId,userName,emailId,password,contactNo) "
-                + "VALUES(?,?,?,?,?)";
-        String SQL2="INSERT INTO professor(professorId,areaOfExpertise,yoe) "+ "VALUES(?,?,?)";
-        Professor professor=new Professor(103,"Meghana","meghana@gmai.com","Meghana","9391645314",
-                103,"Cloud",24);
+    public static void main(String[] args)throws ClassNotFoundException, SQLException {
+
+        ConnectionWithDB connObj=new ConnectionWithDB();
+        Connection con=connObj.getConnection();
+        String SQL = "INSERT INTO course(courseId,courseName) "
+                + "VALUES(?,?)";
+        Course course=new Course(3,"C");
 
         long id = 0;
         //inserting into table
         try (
-             PreparedStatement pstmt = con.prepareStatement(SQL,
-                     Statement.RETURN_GENERATED_KEYS)) {
+                PreparedStatement pstmt = con.prepareStatement(SQL,
+                        Statement.RETURN_GENERATED_KEYS)) {
 
 
-            pstmt.setString(1, String.valueOf(professor.getUserId()));
-            pstmt.setString(2, professor.getUserName());
-            pstmt.setString(3,professor.getEmailId());
-            pstmt.setString(4,professor.getPassword());
-            pstmt.setString(5,professor.getContactNo());
+            pstmt.setString(1, String.valueOf(course.getCourseId()));
+            pstmt.setString(2, course.getCourseName());
+
 
 
             int affectedRows = pstmt.executeUpdate();
@@ -96,36 +93,8 @@ public class ProfessorOperations implements ProfessorUtilsInterface {
         }
 
         //inserting into professor
-        try (
-                PreparedStatement pstmt = con.prepareStatement(SQL2,
-                        Statement.RETURN_GENERATED_KEYS)) {
 
-
-            pstmt.setString(1, String.valueOf(professor.getUserId()));
-            pstmt.setString(2, professor.getAreaOfExpertise());
-            pstmt.setString(3,String.valueOf(professor.getYearsOfExperience()));
-
-
-
-            int affectedRows = pstmt.executeUpdate();
-            // check the affected rows
-            if (affectedRows > 0) {
-                // get the ID back
-                try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        id = rs.getLong(1);
-                    }
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }*/
-
-
-
-   // }
+    }
 }
 /*
 import java.sql.*;
@@ -175,5 +144,76 @@ String SQL = "INSERT INTO actor(first_name,last_name) "
         }
         return id;
     }
+
+
+
+
+//validateCredentials2(102);
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/crsregistration", "root", "root");
+        String SQL = "INSERT INTO user(userId,userName,emailId,password,contactNo) "
+                + "VALUES(?,?,?,?,?)";
+        String SQL2 = "INSERT INTO professor(professorId,areaOfExpertise,yoe) " + "VALUES(?,?,?)";
+        //Professor professor = new Professor(103, "Meghana", "meghana@gmai.com", "Meghana", "9391645314",
+                103, "Cloud", 24);
+
+        long id = 0;
+        //inserting into table
+        try (
+                PreparedStatement pstmt = con.prepareStatement(SQL,
+                        Statement.RETURN_GENERATED_KEYS)) {
+
+
+            pstmt.setString(1, String.valueOf(professor.getUserId()));
+            pstmt.setString(2, professor.getUserName());
+            pstmt.setString(3, professor.getEmailId());
+            pstmt.setString(4, professor.getPassword());
+            pstmt.setString(5, professor.getContactNo());
+
+
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        id = rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        //inserting into professor
+        try (
+                PreparedStatement pstmt = con.prepareStatement(SQL2,
+                        Statement.RETURN_GENERATED_KEYS)) {
+
+
+            pstmt.setString(1, String.valueOf(professor.getUserId()));
+            pstmt.setString(2, professor.getAreaOfExpertise());
+            pstmt.setString(3, String.valueOf(professor.getYearsOfExperience()));
+
+
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        id = rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
 
  */
