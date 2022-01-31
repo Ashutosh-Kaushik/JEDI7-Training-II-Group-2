@@ -7,6 +7,8 @@ public class User {
     private String password;
     private String contactNo;
 
+    public User(){
+            }
     public User(String userId, String userName, String emailId, String password, String contactNo) {
         this.userId = userId;
         this.userName = userName;

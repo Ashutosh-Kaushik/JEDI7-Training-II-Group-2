@@ -2,24 +2,29 @@ package com.flipkart.bean;
 
 public class Student extends User{
 
-    private String studentId;
+    private String userId;
     private int semester;
     private String grade;
-    private boolean feeStatus;
+    private String feeStatus;
+    private boolean isApproved;
 
-    public Student(String userId, String userName, String emailId, String password, String contactNo, String studentId, int semester, String grade, boolean feeStatus) {
+    public Student(String userId, String userName, String emailId, String password, String contactNo, String userId1, int semester, String grade, String feeStatus,boolean isApproved) {
         super(userId, userName, emailId, password, contactNo);
-        this.studentId = studentId;
+        this.userId = userId1;
         this.semester = semester;
         this.grade = grade;
         this.feeStatus = feeStatus;
-    }
-    public String getStudentId() {
-        return studentId;
+        this.isApproved = isApproved;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    @Override
+    public String getUserId() {
+        return userId;
+    }
+
+    @Override
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getSemester() {
@@ -38,11 +43,19 @@ public class Student extends User{
         this.grade = grade;
     }
 
-    public boolean isFeeStatus() {
+    public String isFeeStatus() {
         return feeStatus;
     }
 
-    public void setFeeStatus(boolean feeStatus) {
+    public void setFeeStatus(String feeStatus) {
         this.feeStatus = feeStatus;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
 }
