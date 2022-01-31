@@ -1,19 +1,18 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class AdminDaoImplementation implements AdminDaoInterface{
 
     private static volatile AdminDaoImplementation instance = null;
-    private AdminDaoImplementation() {}
+    public AdminDaoImplementation() {}
     public static AdminDaoImplementation getInstance() {
         if (instance == null) {
             synchronized (AdminDaoImplementation.class) {
@@ -43,6 +42,22 @@ public class AdminDaoImplementation implements AdminDaoInterface{
         return ok;
     }
 
+    public boolean validateCredentials(String adminId, String password){
+        try{
+            Connection conn = DBUtils.getConnection();
+
+            String sql = "SELECT * FROM user where userId like '"+adminId+"' and password like  '"+password+"'";
+//            String sql = "select * from user where userid="+studentId+" and password="+password;
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            return true;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return false;
+        }
+
+    }
     @Override
     public boolean addCourse(Course course) {
         boolean ok = true;
