@@ -57,10 +57,10 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public Student getStudent(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM student where studentId="+studentId;
+        String sql = "SELECT * FROM student where studentId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
-        String sql1 = "SELECT * FROM user where userId="+studentId;
+        String sql1 = "SELECT * FROM user where userId='"+studentId+"'";
         PreparedStatement statement1 = conn.prepareStatement(sql1);
         ResultSet rs1 = statement1.executeQuery();
         while(rs.next()&& rs1.next())
@@ -74,9 +74,11 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public Student validateCredentials(String studentId, String password){
         try{
             Connection conn = DBUtils.getConnection();
-            String sql = "SELECT * FROM user where userId like '"+studentId+"' and password like  '"+password+"'";
+            String sql = "SELECT * FROM user where userId = ? and password = ?";
 //            String sql = "select * from user where userid="+studentId+" and password="+password;
             PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,studentId);
+            statement.setString(2,password);
             ResultSet rs = statement.executeQuery();
             while(rs.next())
             {

@@ -8,7 +8,7 @@ import com.flipkart.service.AdminOperation;
 import java.util.Scanner;
 
 public class AdminMenu {
-    public static void main(String args[]){
+    public void adminMenu(){
 
         int choice;
         int d=1;
