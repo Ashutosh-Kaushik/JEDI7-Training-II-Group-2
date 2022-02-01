@@ -1,8 +1,6 @@
 package com.flipkart.application;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
-import com.flipkart.business.PaymentServiceImplementation;
-import com.flipkart.business.PaymentServiceInterface;
 import com.flipkart.dao.StudentDaoImplementation;
 import com.flipkart.service.StudentOperations;
 
@@ -45,8 +43,7 @@ public class CrsStudentMenu {
                         break;
                     case 5:
                         System.out.println("Pay Fee");
-                        PaymentServiceInterface psi = new PaymentServiceImplementation();
-                        psi.payFees(student);
+
                         break;
                     case 6:
                         System.out.println("Check Fee Status");
