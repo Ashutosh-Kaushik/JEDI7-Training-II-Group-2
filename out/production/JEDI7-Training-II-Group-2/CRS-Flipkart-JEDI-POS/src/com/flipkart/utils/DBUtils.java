@@ -2,12 +2,13 @@ package com.flipkart.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBUtils {
     public static Connection con = null;
 
-    public static Connection getConnection() {
-        if (con != null) return con;
+    public static Connection getConnection() throws SQLException {
+        /*if (con != null) return con;
         else {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -17,7 +18,15 @@ public class DBUtils {
                 System.out.println(e);
             }
             return con;
+        }*/
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        Connection conu= DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/coursereg","root","root");
+        return conu;
     }
 }
 

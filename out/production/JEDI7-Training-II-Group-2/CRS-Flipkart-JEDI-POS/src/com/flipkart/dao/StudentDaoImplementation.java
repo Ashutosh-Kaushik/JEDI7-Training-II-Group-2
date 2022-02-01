@@ -16,6 +16,8 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public String addStudent() throws SQLException {
         Connection connection = DBUtils.getConnection();
+        if(connection==null)System.out.println("connection not established");
+
         Statement stmt = connection.createStatement();
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter userId:");
@@ -36,13 +38,15 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         preparedStatement.setString(3,studentName);
         preparedStatement.setString(4, emaiId);
         preparedStatement.setString(5, contactNo);
+
         int rows=preparedStatement.executeUpdate();
 
         PreparedStatement preparedStatement1 = connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT_QUERY);
         preparedStatement1.setString(1,userId);
         preparedStatement1.setInt(2,semester);
         preparedStatement1.setString(3, " NA ");
-        preparedStatement1.setString(4, " NA ");
+        preparedStatement1.setInt(4, 0);
+        preparedStatement1.setInt(5, 0);
         int rowsAffected1 = preparedStatement1.executeUpdate();
         if (rowsAffected1 == 1&&rows==1) {
             return "Student Added!";
@@ -53,14 +57,11 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public Student getStudent(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM student where studentId=?";
+        String sql = "SELECT * FROM student where studentId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, studentId);
         ResultSet rs = statement.executeQuery();
-        String sql1 = "SELECT * FROM user where userid=?";
-
+        String sql1 = "SELECT * FROM user where userId='"+studentId+"'";
         PreparedStatement statement1 = conn.prepareStatement(sql1);
-        statement1.setString(1,studentId);
         ResultSet rs1 = statement1.executeQuery();
         while(rs.next()&& rs1.next())
         {
@@ -73,17 +74,16 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public Student validateCredentials(String studentId, String password){
         try{
             Connection conn = DBUtils.getConnection();
-            String sql = "SELECT * FROM user where userid=? and password=?";
-
+            String sql = "SELECT * FROM user where userId = ? and password = ?";
+//            String sql = "select * from user where userid="+studentId+" and password="+password;
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, studentId);
-            statement.setString(2, password);
+            statement.setString(1,studentId);
+            statement.setString(2,password);
             ResultSet rs = statement.executeQuery();
             while(rs.next())
             {
-                System.out.println("here");
+                Student student= getStudent(studentId);
                 //  Student student=new Student(studentId,rs1.getString(3),rs1.getString(4), rs1.getString(2),rs1.getString(5),studentId,rs.getInt(2),rs.getString(3),rs.getString(4),true);
-                Student student= this.getStudent(studentId);
                 return student;
             }
         }
