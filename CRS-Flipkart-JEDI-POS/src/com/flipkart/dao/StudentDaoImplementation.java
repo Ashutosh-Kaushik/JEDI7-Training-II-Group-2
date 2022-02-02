@@ -65,7 +65,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         ResultSet rs1 = statement1.executeQuery();
         while(rs.next()&& rs1.next())
         {
-            Student student=new Student(studentId,rs1.getString(3),rs1.getString(4), rs1.getString(2),rs1.getString(5),studentId,rs.getInt(2),rs.getString(3),rs.getString(4),true);
+            Student student=new Student(studentId,rs1.getString(3),rs1.getString(4), rs1.getString(2),rs1.getString(5),studentId,rs.getInt(2),rs.getString(3),rs.getString(4), rs.getBoolean(5));
             return student;
         }
         return null;
@@ -95,14 +95,14 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public String getfeeStatus(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT feeStatus FROM student where studentId="+studentId;
+        String sql = "SELECT paymentId FROM bookkeeper where studentId="+studentId;
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())
-        {
-            return rs.getString("feeStatus");
+        {String x = "Fees Paid";
+            return x;
         }
-        return null;
+        return "Fees not paid";
     }
 
     @Override

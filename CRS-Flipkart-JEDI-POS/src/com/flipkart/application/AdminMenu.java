@@ -87,12 +87,9 @@ public class AdminMenu {
                     }
                     break;
                 case 4:
-                    System.out.println("Enter 123");
-                    int abc = in.nextInt();
-                    System.out.println("Here is a list of all pending students ++++++++++++");
                     AdminInterface admin3= AdminOperation.getInstance();
                     try{
-                        admin3.approveStudents(abc);
+                        admin3.approveStudents();
                     }
                     catch(Exception e){
                         System.out.println(e);

@@ -20,12 +20,12 @@ public class DBUtils {
             return con;
         }*/
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         Connection conu= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/coursereg","root","root");
+                "jdbc:mysql://localhost:3306/crs","root","password");
         return conu;
     }
 }

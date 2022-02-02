@@ -10,7 +10,7 @@ public interface AdminDaoInterface {
     }
     boolean addCourse(Course course);
     boolean dropCourse(int courseId);
-    boolean approveStudents(int abc);
+    boolean approveStudents();
     boolean validateCredentials(String adminId, String password);
 
 //    ArrayList<Grade> fetchGrade(int userId);

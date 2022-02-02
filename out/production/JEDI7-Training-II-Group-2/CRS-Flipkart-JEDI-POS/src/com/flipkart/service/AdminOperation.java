@@ -63,11 +63,11 @@ public class AdminOperation implements AdminInterface {
     }
 
     @Override
-    public boolean approveStudents(int abc) {
+    public boolean approveStudents() {
         AdminDaoInterface admin = AdminDaoImplementation.getInstance();
-        boolean ok = admin.approveStudents(abc);
+        boolean ok = admin.approveStudents();
         if(ok) {
-            System.out.println("Approved");
+            System.out.println("");
             System.out.println("+++++++++++++++++++++++");
             return true;
         }
