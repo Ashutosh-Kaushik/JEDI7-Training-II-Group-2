@@ -24,16 +24,18 @@ public class CrsLoginMenu {
         String password=br.readLine();
         switch(userType){
             case 1:
+
                 System.out.println("Validating Student credentials");
                 StudentDaoImplementation studentDaoImplementation=new StudentDaoImplementation();
                 Student student=studentDaoImplementation.validateCredentials(userId,password);
-                if(student!=null){
+
+                if(student!=null && student.isApproved()){
                     System.out.println("Hey Student. Welcome to the portal");
                     CrsStudentMenu crsStudentMenu=new CrsStudentMenu();
                     crsStudentMenu.studentMenu(student);
                 }
                 else{
-                    System.out.println("Invalid User ID");
+                    System.out.println("Invalid User ID or student is not approved");
                     return;
                 }
                 break;

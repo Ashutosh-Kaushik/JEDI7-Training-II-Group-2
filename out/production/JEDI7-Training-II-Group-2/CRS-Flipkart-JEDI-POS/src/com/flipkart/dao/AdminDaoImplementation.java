@@ -93,27 +93,40 @@ public class AdminDaoImplementation implements AdminDaoInterface{
     }
 
     @Override
-    public boolean approveStudents(int abc) {
+    public boolean approveStudents() {
         boolean ok = true;
         try{
             Connection con = DBUtils.getConnection();
             Statement stmt = con.createStatement();
             if(con==null)System.out.println("connection not established");
-            String sql = "select * from student where isApproved= 0";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                int sId = rs.getInt(1);
-                System.out.println(rs.getInt(1));
+            Scanner in= new Scanner(System.in);
+            int ch =1;
+            while(ch!=0) {
+                String sql = "select * from student where isApproved= 0";
+                ResultSet rs = stmt.executeQuery(sql);
+                int flag=0;
+                System.out.println("Here is a list of all pending students ++++++++++++");
+                while (rs.next()) {
+                    int sId = rs.getInt(1);
+                    System.out.println(rs.getInt(1));
+                    flag=1;
 //                String s = "select * from user where userId = " +sId;
 //                Statement st = con.createStatement();
 //                ResultSet r = st.executeQuery(s);
 //                System.out.println(r.getString(3)+ " " +r.getString(4));
+                }
+                if(flag==1) {
+                    System.out.println("Enter student id");
+                    int id = in.nextInt();
+                    sql = "UPDATE student SET isApproved = 1 where studentId = " + id;
+                    stmt.executeUpdate(sql);
+                }
+                else{
+                    System.out.println("No student left to be approved");
+                }
+                System.out.println("To exit, press 0 : To continue, press 1");
+                ch = in.nextInt();
             }
-            Scanner in= new Scanner(System.in);
-            System.out.println("Enter student id");
-            int id = in.nextInt();
-            sql = "UPDATE student SET isApproved = 1 where studentId = " + id;
-            stmt.executeUpdate(sql);
         } catch (SQLException e) {
             ok = false;
             System.out.println(e.getMessage());

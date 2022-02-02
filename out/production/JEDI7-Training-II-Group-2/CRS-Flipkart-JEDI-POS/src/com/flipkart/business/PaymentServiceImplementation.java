@@ -60,7 +60,7 @@ public class PaymentServiceImplementation implements PaymentServiceInterface{
             return;
         }
         pdi.updateFeeStatus(student.getUserId());
-        System.out.println("Payment Successfully !!");
+        System.out.println("Payment Successfully done !!");
     }
 
     public String getRandomString() {
