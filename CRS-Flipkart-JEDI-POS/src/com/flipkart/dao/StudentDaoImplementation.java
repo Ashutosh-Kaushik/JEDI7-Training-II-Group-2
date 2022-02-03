@@ -41,8 +41,8 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         PreparedStatement preparedStatement1 = connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT_QUERY);
         preparedStatement1.setString(1,userId);
         preparedStatement1.setInt(2,semester);
-        preparedStatement1.setString(3, " NA ");
-        preparedStatement1.setString(4, " NA ");
+        preparedStatement1.setString(3, "0");
+        preparedStatement1.setString(4, "0");
         int rowsAffected1 = preparedStatement1.executeUpdate();
         if (rowsAffected1 == 1&&rows==1) {
             return "Student Added!";
@@ -70,7 +70,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public Student validateCredentials(String studentId, String password){
         try{
             Connection conn = DBUtils.getConnection();
-            String sql = "SELECT * FROM user where userid="+studentId+" and password="+password;
+            String sql = "SELECT * FROM user where userid like '"+studentId+"' and password like  '"+password+"'";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while(rs.next())
