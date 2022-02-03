@@ -36,5 +36,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="log4j.apache.extras" level="project" />
   </component>
 </module>

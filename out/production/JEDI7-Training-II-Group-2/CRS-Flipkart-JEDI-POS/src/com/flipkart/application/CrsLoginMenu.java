@@ -25,12 +25,14 @@ public class CrsLoginMenu {
         switch(userType){
             case 1:
 
-                System.out.println("Validating Student credentials");
+                System.out.println("Validating Student credentials ........");
                 StudentDaoImplementation studentDaoImplementation=new StudentDaoImplementation();
                 Student student=studentDaoImplementation.validateCredentials(userId,password);
 
                 if(student!=null && student.isApproved()){
+                    System.out.println("+++++++++++++++++++++++++++++++++++");
                     System.out.println("Hey Student. Welcome to the portal");
+                    System.out.println("+++++++++++++++++++++++++++++++++++");
                     CrsStudentMenu crsStudentMenu=new CrsStudentMenu();
                     crsStudentMenu.studentMenu(student);
                 }
@@ -40,11 +42,13 @@ public class CrsLoginMenu {
                 }
                 break;
             case 2:
-                System.out.println("Validating Professor credentials");
+                System.out.println("Validating Professor credentials ......");
                 ProfessorService profServ=new ProfessorService();
                 Professor professor=profServ.validateCredentials(userId,password);
                 if(professor!=null){
+                    System.out.println("+++++++++++++++++++++++++++++++++++");
                     System.out.println("Hey Professor. Welcome to the portal");
+                    System.out.println("+++++++++++++++++++++++++++++++++++");
                     CrsProfessorMenu crsProfessorMenu=new CrsProfessorMenu();
                     crsProfessorMenu.professorMenu(professor);
                 }
@@ -54,11 +58,13 @@ public class CrsLoginMenu {
                 }
                 break;
             case 3:
-                System.out.println("Validating Admin credentials");
+                System.out.println("Validating Admin credentials ..........");
                 AdminDaoImplementation adminDaoImplementation=new AdminDaoImplementation();
                 boolean x= adminDaoImplementation.validateCredentials(userId,password);
                 if(x==true){
+                    System.out.println("+++++++++++++++++++++++++++++++++++");
                     System.out.println("Hey Admin. Welcome to the portal");
+                    System.out.println("+++++++++++++++++++++++++++++++++++");
                     AdminMenu adminMenu=new AdminMenu();
                     adminMenu.adminMenu();
                 }

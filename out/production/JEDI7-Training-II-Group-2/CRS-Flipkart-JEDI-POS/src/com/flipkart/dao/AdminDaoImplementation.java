@@ -122,7 +122,7 @@ public class AdminDaoImplementation implements AdminDaoInterface{
                     stmt.executeUpdate(sql);
                 }
                 else{
-                    System.out.println("No student left to be approved");
+                    System.out.println("<<<<<<< No student left to be approved >>>>>>>>>>>");
                 }
                 System.out.println("To exit, press 0 : To continue, press 1");
                 ch = in.nextInt();
