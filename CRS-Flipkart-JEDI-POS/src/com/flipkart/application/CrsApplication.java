@@ -16,7 +16,7 @@ public class CrsApplication {
             System.out.println("Main Menu \n1. Register\n2. Login\n3.Update Password\n4. Exit");
             System.out.println("---------------------------------------------------------");
             System.out.println("Enter your choice:");
-            logger.info("Abcdefg");
+            logger.debug("Abcdefg");
             BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
             int choice=Integer.parseInt(br.readLine());
             switch (choice) {
