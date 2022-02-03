@@ -1,12 +1,10 @@
 package com.flipkart.application;
 
-import com.flipkart.bean.Admin;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
-import com.flipkart.business.ProfessorService;
+import com.flipkart.service.ProfessorService;
 import com.flipkart.dao.AdminDaoImplementation;
 import com.flipkart.dao.StudentDaoImplementation;
-import com.flipkart.service.StudentOperations;
 
 import java.io.BufferedReader;
 import java.io.IOException;

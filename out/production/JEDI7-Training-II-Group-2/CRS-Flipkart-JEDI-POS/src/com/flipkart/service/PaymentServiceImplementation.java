@@ -1,9 +1,10 @@
-package com.flipkart.business;
+package com.flipkart.service;
 
 import com.flipkart.bean.Student;
 import com.flipkart.constants.PaymentConstants;
 import com.flipkart.dao.PaymentDaoImplementation;
 import com.flipkart.dao.PaymentDaoInterface;
+import com.flipkart.service.PaymentServiceInterface;
 import com.flipkart.utils.DBUtils;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class PaymentServiceImplementation implements PaymentServiceInterface{
+public class PaymentServiceImplementation implements PaymentServiceInterface {
     @Override
     public void payFees(Student student) throws SQLException {
 

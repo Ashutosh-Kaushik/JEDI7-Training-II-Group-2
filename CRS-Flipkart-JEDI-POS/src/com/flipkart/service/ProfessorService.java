@@ -1,8 +1,9 @@
-package com.flipkart.business;
+package com.flipkart.service;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.dao.ProfessorOperations;
+import com.flipkart.service.ProfessorServiceInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -2,9 +2,7 @@ package com.flipkart.application;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
-import com.flipkart.bean.Student;
-import com.flipkart.business.ProfessorService;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import com.flipkart.service.ProfessorService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
