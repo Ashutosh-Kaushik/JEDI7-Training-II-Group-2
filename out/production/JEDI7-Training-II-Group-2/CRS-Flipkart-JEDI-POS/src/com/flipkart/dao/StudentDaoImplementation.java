@@ -82,7 +82,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public Student validateCredentials(String studentId, String password){
         try{
             Connection conn = DBUtils.getConnection();
-            String sql = "SELECT * FROM user where userId = ? and password = ?";
+            String sql = "SELECT * FROM user where userid = ? and password = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1,studentId);
             statement.setString(2,password);
