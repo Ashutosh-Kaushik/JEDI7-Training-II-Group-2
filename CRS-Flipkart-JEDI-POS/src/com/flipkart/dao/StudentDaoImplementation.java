@@ -75,7 +75,6 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         try{
             Connection conn = DBUtils.getConnection();
             String sql = "SELECT * FROM user where userId = ? and password = ?";
-//            String sql = "select * from user where userid="+studentId+" and password="+password;
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1,studentId);
             statement.setString(2,password);
