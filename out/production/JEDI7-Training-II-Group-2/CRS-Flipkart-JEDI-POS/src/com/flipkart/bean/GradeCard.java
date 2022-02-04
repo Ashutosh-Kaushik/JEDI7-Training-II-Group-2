@@ -5,6 +5,12 @@ public class GradeCard {
     private int courseId;
     private String grade;
 
+    /**
+     *
+     * @param userId
+     * @param courseId
+     * @param grade
+     */
     public GradeCard(String userId, int courseId, String grade) {
         this.userId = userId;
         this.courseId = courseId;
@@ -23,6 +29,10 @@ public class GradeCard {
         return courseId;
     }
 
+    /**
+     *
+     * @param courseId
+     */
     public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
@@ -31,6 +41,10 @@ public class GradeCard {
         return grade;
     }
 
+    /**
+     *
+     * @param grade
+     */
     public void setGrade(String grade) {
         this.grade = grade;
     }

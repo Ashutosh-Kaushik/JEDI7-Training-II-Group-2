@@ -9,6 +9,11 @@ public class Course {
         this.courseName = courseName;
     }
 
+    /**
+     *
+     * @param courseId
+     * @param courseName
+     */
     public Course(int courseId, String courseName) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -18,6 +23,10 @@ public class Course {
         return courseId;
     }
 
+    /**
+     *
+     * @param courseId
+     */
     public void setCourseId(int courseId) {
         this.courseId = courseId;
     }
@@ -26,6 +35,10 @@ public class Course {
         return courseName;
     }
 
+    /**
+     *
+     * @param courseName
+     */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }

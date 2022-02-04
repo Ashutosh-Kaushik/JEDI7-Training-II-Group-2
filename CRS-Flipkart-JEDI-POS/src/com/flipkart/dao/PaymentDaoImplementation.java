@@ -49,7 +49,7 @@ public class PaymentDaoImplementation implements PaymentDaoInterface{
         Connection conn = DBUtils.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1,studentId);
-        statement.setBoolean(2,true);
+        statement.setString(2,"1");
         statement.executeUpdate();
     }
 }

@@ -1,32 +1,33 @@
 package com.flipkart.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBUtils {
     public static Connection con = null;
 
     public static Connection getConnection() throws SQLException {
-        /*if (con != null) return con;
-        else {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/crs", "AK18", "r8Qx#$PZ6oxn4GyoT8");
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            return con;
-        }*/
+        Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Properties properties = new Properties();
+            InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("./config.properties");
+            properties.load(inputStream);
+            String driver = properties.getProperty("driver");
+            String url = properties.getProperty("url");
+            String username = properties.getProperty("username");
+            String password = properties.getProperty("password");
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Connection conu= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/coursereg","root","root");
-        return conu;
+        return connection;
     }
 }
 
