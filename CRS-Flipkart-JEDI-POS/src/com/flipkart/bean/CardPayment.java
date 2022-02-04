@@ -6,6 +6,13 @@ public class CardPayment {
     private String name;
     private int amount;
 
+    /**
+     *
+     * @param cardNumber
+     * @param expirationDate
+     * @param name
+     * @param amount
+     */
     public CardPayment(String cardNumber, String expirationDate, String name, int amount) {
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -17,14 +24,26 @@ public class CardPayment {
         return cardNumber;
     }
 
+    /**
+     *
+     * @param cardNumber
+     */
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getExpirationDate() {
         return expirationDate;
     }
 
+    /**
+     *
+     * @param expirationDate
+     */
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
@@ -33,6 +52,10 @@ public class CardPayment {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
@@ -41,6 +64,10 @@ public class CardPayment {
         return amount;
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void setAmount(int amount) {
         this.amount = amount;
     }

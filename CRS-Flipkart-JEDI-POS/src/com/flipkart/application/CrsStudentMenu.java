@@ -1,8 +1,8 @@
 package com.flipkart.application;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
-import com.flipkart.business.PaymentServiceImplementation;
-import com.flipkart.business.PaymentServiceInterface;
+import com.flipkart.service.PaymentServiceImplementation;
+import com.flipkart.service.PaymentServiceInterface;
 import com.flipkart.dao.StudentDaoImplementation;
 import com.flipkart.service.StudentOperations;
 
