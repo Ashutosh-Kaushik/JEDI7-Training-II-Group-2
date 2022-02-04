@@ -23,7 +23,6 @@ public class CrsApplication {
                 case 1:
                     StudentDaoImplementation studentDaoImplementation=new StudentDaoImplementation();
                     studentDaoImplementation.addStudent();
-                    System.out.println("Student is registered");
                     break;
                 case 2:
                     CrsLoginMenu login = new CrsLoginMenu();
