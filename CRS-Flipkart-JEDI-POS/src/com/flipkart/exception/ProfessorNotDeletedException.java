@@ -3,10 +3,7 @@
  */
 package com.flipkart.exception;
 
-/**
- * @author devanshugarg
- *
- */
+
 @SuppressWarnings("serial")
 public class ProfessorNotDeletedException extends Exception {
 
