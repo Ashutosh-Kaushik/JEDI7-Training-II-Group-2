@@ -17,6 +17,10 @@ public class GradeCard {
         this.grade = grade;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUserId() {
         return userId;
     }

@@ -11,6 +11,17 @@ public class Professor extends User{
         this.yearsOfExperience = yearsOfExperience;
     }
 
+    /**
+     *
+     * @param userId
+     * @param userName
+     * @param emailId
+     * @param password
+     * @param contactNo
+     * @param professorId
+     * @param areaOfExpertise
+     * @param yearsOfExperience
+     */
     public Professor(String userId, String userName, String emailId, String password, String contactNo, String professorId, String areaOfExpertise, int yearsOfExperience) {
         super(userId, userName, emailId, password, contactNo);
         this.professorId = professorId;
