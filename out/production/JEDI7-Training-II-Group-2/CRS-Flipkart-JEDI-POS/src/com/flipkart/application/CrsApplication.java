@@ -1,6 +1,8 @@
 package com.flipkart.application;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.StudentDaoImplementation;
+import com.flipkart.dao.UpdatePasswordDao;
+import com.flipkart.service.UpdatePassword;
 import org.apache.log4j.Logger;
 
 import java.lang.*;
@@ -23,14 +25,14 @@ public class CrsApplication {
                 case 1:
                     StudentDaoImplementation studentDaoImplementation=new StudentDaoImplementation();
                     studentDaoImplementation.addStudent();
-                    System.out.println("Student is registered");
                     break;
                 case 2:
                     CrsLoginMenu login = new CrsLoginMenu();
                     login.crsLoginMenu();
                     break;
                 case 3:
-                    System.out.println("Updating the password");
+                    UpdatePassword updatePassword=new UpdatePassword();
+                    updatePassword.updatePassword();
                     break;
                 case 4:
                     System.out.println("Bye");
