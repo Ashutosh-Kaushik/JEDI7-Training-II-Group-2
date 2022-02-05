@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 
 public class CrsLoginMenu {
+
+
     public void crsLoginMenu() throws IOException, SQLException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the User Type\n1.Student \n2.Professor \n3.Admin");
@@ -35,7 +37,7 @@ public class CrsLoginMenu {
                     crsStudentMenu.studentMenu(student);
                 }
                 else{
-                    System.out.println("Invalid User ID or student is not approved");
+                    System.out.println("Invalid User credentials or student is not approved");
                     return;
                 }
                 break;

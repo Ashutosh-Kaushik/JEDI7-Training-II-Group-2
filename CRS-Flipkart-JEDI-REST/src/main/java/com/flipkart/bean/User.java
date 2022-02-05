@@ -9,15 +9,6 @@ public class User {
 
     public User(){
             }
-
-    /**
-     *
-      * @param userId
-     * @param userName
-     * @param emailId
-     * @param password
-     * @param contactNo
-     */
     public User(String userId, String userName, String emailId, String password, String contactNo) {
         this.userId = userId;
         this.userName = userName;

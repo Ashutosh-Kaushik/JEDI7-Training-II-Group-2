@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 
 public class StudentOperations implements StudentInterface {
 
@@ -27,13 +28,15 @@ public class StudentOperations implements StudentInterface {
     }
 
     @Override
-    public void registeredCourseList(String studentId) throws SQLException {
+    public Vector<Course> registeredCourseList(String studentId) throws SQLException {
       ArrayList<Integer> courses= studentDaoImplementation.registeredCoursesList(studentId);
+        Vector<Course> registeredCourses=null;
       for(Integer c:courses)
       {
           Course course=studentDaoImplementation.viewCourse(c);
-        System.out.println(c+"-"+course.getCourseName());
+          registeredCourses.add(course);
       }
+      return registeredCourses;
     }
 
     @Override

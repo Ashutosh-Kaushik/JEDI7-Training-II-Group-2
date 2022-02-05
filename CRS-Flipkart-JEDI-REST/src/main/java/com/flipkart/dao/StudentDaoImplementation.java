@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class StudentDaoImplementation implements StudentDaoInterface {
 
-
+    //final org.apache.log4j.Logger logger = Logger.getLogger(StudentDaoImplementation.class);
     @Override
     public String addStudent() throws SQLException {
         Connection connection = DBUtils.getConnection();
@@ -32,24 +32,30 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         String contactNo= sc.next();
         System.out.println("Enter semester:");
         int semester=sc.nextInt();
-        PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_USER_QUERY);
-        preparedStatement.setString(1,userId);
-        preparedStatement.setString(2,password);
-        preparedStatement.setString(3,studentName);
-        preparedStatement.setString(4, emaiId);
-        preparedStatement.setString(5, contactNo);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_USER_QUERY);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, studentName);
+            preparedStatement.setString(4, emaiId);
+            preparedStatement.setString(5, contactNo);
 
-        int rows=preparedStatement.executeUpdate();
+            int rows = preparedStatement.executeUpdate();
 
-        PreparedStatement preparedStatement1 = connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT_QUERY);
-        preparedStatement1.setString(1,userId);
-        preparedStatement1.setInt(2,semester);
-        preparedStatement1.setString(3, " NA ");
-        preparedStatement1.setInt(4, 0);
-        preparedStatement1.setInt(5, 0);
-        int rowsAffected1 = preparedStatement1.executeUpdate();
-        if (rowsAffected1 == 1&&rows==1) {
-            return "Student Added!";
+            PreparedStatement preparedStatement1 = connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT_QUERY);
+            preparedStatement1.setString(1, userId);
+            preparedStatement1.setInt(2, semester);
+            preparedStatement1.setString(3, " NA ");
+            preparedStatement1.setInt(4, 0);
+            preparedStatement1.setInt(5, 0);
+            int rowsAffected1 = preparedStatement1.executeUpdate();
+            if (rowsAffected1 == 1 && rows == 1) {
+                //logger.info("Student is registered");
+            }
+        }
+        catch(SQLException e)
+        {
+            //logger.info("Student with the ID exists. Try Again!!");
         }
         return null;
     }
@@ -74,8 +80,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public Student validateCredentials(String studentId, String password){
         try{
             Connection conn = DBUtils.getConnection();
-            String sql = "SELECT * FROM user where userId = ? and password = ?";
-//            String sql = "select * from user where userid="+studentId+" and password="+password;
+            String sql = "SELECT * FROM user where userid = ? and password = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1,studentId);
             statement.setString(2,password);
