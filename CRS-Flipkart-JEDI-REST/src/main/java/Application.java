@@ -1,3 +1,4 @@
+import com.flipkart.restController.ProfessorRestAPI;
 import com.flipkart.restController.StudentRestAPI;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -20,10 +21,10 @@ public class Application extends io.dropwizard.Application<ApplicationConfigurat
     @Override
     public void run(ApplicationConfiguration configuration,
                     Environment environment) {
-        final ApplicationResources resource = new ApplicationResources();
         final StudentRestAPI studentRestAPI=new StudentRestAPI() ;
-        environment.jersey().register(resource);
         environment.jersey().register(studentRestAPI);
+        final ProfessorRestAPI professorRestAPI = new ProfessorRestAPI();
+        environment.jersey().register(professorRestAPI);
         // nothing to do yet
     }
 

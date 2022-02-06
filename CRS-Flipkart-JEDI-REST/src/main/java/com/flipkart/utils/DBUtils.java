@@ -1,5 +1,8 @@
 package com.flipkart.utils;
 
+import com.flipkart.dao.StudentDaoImplementation;
+import com.flipkart.dao.StudentDaoInterface;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,6 +13,10 @@ import java.util.Properties;
 public class DBUtils {
     public static Connection con = null;
 
+    public static void main(String[] args) throws SQLException {
+        Connection con = DBUtils.getConnection();
+        System.out.println(con);
+    }
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
         try {

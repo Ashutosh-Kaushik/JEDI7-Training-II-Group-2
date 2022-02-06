@@ -12,7 +12,7 @@ public class ConnectionWithDB {
             e.printStackTrace();
         }
         Connection conu= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/crs","root","password");
+                "jdbc:mysql://localhost:3306/crs","AK18","r8Qx#$PZ6oxn4GyoT8");
         return conu;
     }
 }
