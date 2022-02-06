@@ -18,7 +18,7 @@ C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\exception\ProfessorHasNotGradedException.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\dao\ProfessorOperations.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\service\ProfessorServiceInterface.java
-C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\ApplicationResources.java
+C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\restController\ProfessorRestAPI.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\exception\ConfirmPasswordException.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\exception\ProfessorAlreadyRegisteredException.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\bean\Student.java
@@ -45,6 +45,7 @@ C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\bean\UPIPayment.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\dao\AdminDaoInterface.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\service\ProfessorService.java
+C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\service\ApplicationResources.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\service\AdminOperation.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\bean\GradeCard.java
 C:\Users\varalakshmiRamarao\IdeaProjects\JEDI7-Training-II-Group-2\CRS-Flipkart-JEDI-REST\src\main\java\com\flipkart\exception\ProfessorIdAlreadyInUseException.java

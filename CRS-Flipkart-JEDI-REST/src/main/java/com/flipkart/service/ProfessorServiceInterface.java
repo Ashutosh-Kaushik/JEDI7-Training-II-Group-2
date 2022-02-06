@@ -11,7 +11,7 @@ import java.util.Map;
 public interface ProfessorServiceInterface {
     public Professor validateCredentials(String userId,String password);
     public ArrayList<Course> viewAllCourses() throws SQLException, ClassNotFoundException;
-    public void registerCourses(Professor professor) throws SQLException, IOException;
-    public Map<String, ArrayList<String>> viewEnrolledStudents(Professor professor) throws SQLException;
-    public void assignGrades(Professor professor) throws SQLException, IOException;
+    public void registerCourses(String professorId,int courseId) throws SQLException, IOException;
+    public Map<String, ArrayList<String>> viewEnrolledStudents(String professorId) throws SQLException;
+    public void assignGrades(String professorId, int courseId, String studentId, String grade) throws SQLException, IOException;
     }

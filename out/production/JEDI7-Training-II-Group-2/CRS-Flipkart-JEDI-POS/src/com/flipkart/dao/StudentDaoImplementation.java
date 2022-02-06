@@ -5,6 +5,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.GradeCard;
 import com.flipkart.bean.Student;
 import com.flipkart.constants.SQLQueriesConstants;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.utils.DBUtils;
 import org.apache.log4j.Logger;
 
@@ -127,16 +128,23 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     }
 
     @Override
-    public void registerCourses(String studentId, ArrayList<Integer> courses) throws SQLException {
+    public void registerCourses(String studentId, ArrayList<Integer> courses) throws SQLException,CourseAlreadyRegisteredException {
         Connection connection = DBUtils.getConnection();
         Statement stmt = connection.createStatement();
-        for(Integer course:courses) {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_REGISTERCOURSE_QUERY);
-            preparedStatement.setString(1, studentId);
-            preparedStatement.setInt(2, course);
-            preparedStatement.setString(3, "0");
-            preparedStatement.executeUpdate();
+        try{
+            for(Integer course:courses) {
+                PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_REGISTERCOURSE_QUERY);
+                preparedStatement.setString(1, studentId);
+                preparedStatement.setInt(2, course);
+                preparedStatement.setString(3, "0");
+                preparedStatement.executeUpdate();
+            }
         }
+        catch (Exception e){
+
+            throw new CourseAlreadyRegisteredException();
+        }
+
     }
 
     @Override

@@ -11,14 +11,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ProfessorOperations implements ProfessorUtilsInterface {
-    public Map<String, ArrayList<String>> viewEnrolledStudentsWithDB(Professor professor) throws SQLException {
+    public Map<String, ArrayList<String>> viewEnrolledStudentsWithDB(String professorId) throws SQLException {
 
         Map<String,ArrayList<String>> students=new LinkedHashMap<>();
         ConnectionWithDB con=new ConnectionWithDB();
         Connection conn = con.getConnection();
         String sql = "select registrar.userId,user.userName,course.courseId,course.courseName " +
                 "from registrar,user,course where registrar.courseId in(select courseId from professorreg " +
-                "where professorreg.userId='"+professor.getProfessorId()+"' ) and registrar.userId=user.userId and " +
+                "where professorreg.userId='"+professorId+"' ) and registrar.userId=user.userId and " +
                 "registrar.courseId=course.courseId ";
 
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class ProfessorOperations implements ProfessorUtilsInterface {
         }
 
     }
-    public void registerCoursesWithDB(Professor professor,Course course) throws SQLException {
+    public void registerCoursesWithDB(String professorId,int courseId) throws SQLException {
         ArrayList<Course> courses=new ArrayList<Course>();
         ConnectionWithDB connObj=new ConnectionWithDB();
         Connection con=connObj.getConnection();
@@ -76,8 +76,8 @@ public class ProfessorOperations implements ProfessorUtilsInterface {
                         Statement.RETURN_GENERATED_KEYS)) {
 
 
-            pstmt.setString(1, professor.getProfessorId());
-            pstmt.setString(2, String.valueOf(course.getCourseId()));
+            pstmt.setString(1, professorId);
+            pstmt.setString(2, String.valueOf(courseId));
 
 
 
@@ -98,7 +98,7 @@ public class ProfessorOperations implements ProfessorUtilsInterface {
         }
 
     }
-    public ArrayList<Course> viewAvailableCoursesWithDB(Professor professor) throws SQLException {
+    public ArrayList<Course> viewAvailableCoursesWithDB(String professorId) throws SQLException {
         ArrayList<Course> courses=new ArrayList<Course>();
         ConnectionWithDB connObj=new ConnectionWithDB();
         Connection con=connObj.getConnection();
