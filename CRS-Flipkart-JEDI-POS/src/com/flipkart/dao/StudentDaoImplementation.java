@@ -5,6 +5,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.GradeCard;
 import com.flipkart.bean.Student;
 import com.flipkart.constants.SQLQueriesConstants;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.utils.DBUtils;
 import org.apache.log4j.Logger;
 
@@ -102,7 +103,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public String getfeeStatus(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT paymentId FROM bookkeeper where studentId="+studentId;
+        String sql = "SELECT paymentId FROM bookkeeper where studentId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())
@@ -115,9 +116,9 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public ArrayList<Integer> registeredCoursesList(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM registrar where userId="+studentId;
-        PreparedStatement statement = conn.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQLQueriesConstants.VIEW_REGISTERED_COURSES);
+        preparedStatement.setString(1, studentId);
+        ResultSet rs=preparedStatement.executeQuery();
         ArrayList<Integer> courses=new ArrayList<>();
         while(rs.next())
         {
@@ -127,16 +128,23 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     }
 
     @Override
-    public void registerCourses(String studentId, ArrayList<Integer> courses) throws SQLException {
+    public void registerCourses(String studentId, ArrayList<Integer> courses) throws SQLException,CourseAlreadyRegisteredException {
         Connection connection = DBUtils.getConnection();
         Statement stmt = connection.createStatement();
-        for(Integer course:courses) {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_REGISTERCOURSE_QUERY);
-            preparedStatement.setString(1, studentId);
-            preparedStatement.setInt(2, course);
-            preparedStatement.setString(3, " NA ");
-            preparedStatement.executeUpdate();
+        try{
+            for(Integer course:courses) {
+                PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_REGISTERCOURSE_QUERY);
+                preparedStatement.setString(1, studentId);
+                preparedStatement.setInt(2, course);
+                preparedStatement.setString(3, "0");
+                preparedStatement.executeUpdate();
+            }
         }
+        catch (Exception e){
+
+            throw new CourseAlreadyRegisteredException();
+        }
+
     }
 
     @Override
@@ -191,7 +199,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public ArrayList<GradeCard> viewGrades(String studentId) throws SQLException {
     ArrayList<GradeCard> gradeCards=new ArrayList<>();
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM registrar where userId="+studentId;
+        String sql = "SELECT * FROM registrar where userId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())

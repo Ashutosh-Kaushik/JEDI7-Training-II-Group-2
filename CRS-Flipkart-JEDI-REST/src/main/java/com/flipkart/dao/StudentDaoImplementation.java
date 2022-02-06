@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.GradeCard;
 import com.flipkart.bean.Student;
 import com.flipkart.constants.SQLQueriesConstants;
+import com.flipkart.service.StudentOperations;
 import com.flipkart.utils.DBUtils;
 
 import java.sql.*;
@@ -11,6 +12,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentDaoImplementation implements StudentDaoInterface {
+
+
+    public static StudentDaoInterface getInstance() {
+        return null;
+    }
 
     //final org.apache.log4j.Logger logger = Logger.getLogger(StudentDaoImplementation.class);
     @Override
@@ -71,7 +77,8 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         ResultSet rs1 = statement1.executeQuery();
         while(rs.next()&& rs1.next())
         {
-            Student student=new Student(studentId,rs1.getString(3),rs1.getString(4), rs1.getString(2),rs1.getString(5),studentId,rs.getInt(2),rs.getString(3),rs.getString(4), rs.getBoolean(5));
+            //Student student1=new Student(studentId)
+            Student student=new Student(studentId,rs1.getString(3),rs1.getString(4), rs1.getString(2),rs1.getString(5),studentId,rs.getInt(2),rs.getString(3),String.valueOf(rs.getInt(4)), (Boolean.valueOf(String.valueOf(rs.getInt(5)))));
             return student;
         }
         return null;

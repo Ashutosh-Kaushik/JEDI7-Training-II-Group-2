@@ -2,6 +2,7 @@ package com.flipkart.service;
 
 import com.flipkart.bean.*;
 import com.flipkart.dao.StudentDaoImplementation;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class StudentOperations implements StudentInterface {
 
     private static volatile StudentOperations instance = null;
-
+    private int value;
     // private constructor
     public StudentOperations() {
     }
@@ -28,6 +29,7 @@ public class StudentOperations implements StudentInterface {
     @Override
     public void registeredCourseList(String studentId) throws SQLException {
       ArrayList<Integer> courses= studentDaoImplementation.registeredCoursesList(studentId);
+      value = courses.size();
       for(Integer c:courses)
       {
           Course course=studentDaoImplementation.viewCourse(c);
@@ -36,21 +38,30 @@ public class StudentOperations implements StudentInterface {
     }
 
     @Override
-    public void registerCourses(String studentID) throws SQLException {
+    public void registerCourses(String studentID) throws SQLException,CourseAlreadyRegisteredException{
         Scanner sc=new Scanner(System.in);
         System.out.println("The courses are: ");
-        System.out.println("View Courses");
         ArrayList<Course> courses= (ArrayList<Course>) viewCourses();
         System.out.println("CourseId-CourseName");
         for(Course c:courses)
             System.out.println(c.getCourseId()+"\t-\t"+c.getCourseName());
-        System.out.println("Enter the course ids to be registered");
-        ArrayList<Integer> selectedCourse=new ArrayList<Integer>();
-        for(int i=0;i<4;i++)
-        {
-            selectedCourse.add(sc.nextInt());
+        if(courses.size()==4)
+            System.out.println("You have reached your limit of max courses");
+        else {
+
+            System.out.println("Enter number of courses you want to register : ");
+            int count = sc.nextInt();
+            while(count>4) {
+                System.out.println("You can register for max 4 courses");
+                System.out.println("Enter number of courses you want to register : ");
+                count = sc.nextInt();
+            }
+            ArrayList<Integer> selectedCourse = new ArrayList<Integer>();
+            for (int i = 0; i < count; i++) {
+                selectedCourse.add(sc.nextInt());
+            }
+            studentDaoImplementation.registerCourses(studentID, selectedCourse);
         }
-        studentDaoImplementation.registerCourses(studentID,selectedCourse);
     }
 
     @Override

@@ -1,8 +1,6 @@
 import com.flipkart.restController.StudentRestAPI;
-import com.flipkart.service.ApplicationResources;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-
 
 public class Application extends io.dropwizard.Application<ApplicationConfiguration> {
     public static void main(String[] args) throws Exception {
@@ -23,8 +21,8 @@ public class Application extends io.dropwizard.Application<ApplicationConfigurat
     public void run(ApplicationConfiguration configuration,
                     Environment environment) {
         final ApplicationResources resource = new ApplicationResources();
+        final StudentRestAPI studentRestAPI=new StudentRestAPI() ;
         environment.jersey().register(resource);
-        final StudentRestAPI studentRestAPI=new StudentRestAPI();
         environment.jersey().register(studentRestAPI);
         // nothing to do yet
     }

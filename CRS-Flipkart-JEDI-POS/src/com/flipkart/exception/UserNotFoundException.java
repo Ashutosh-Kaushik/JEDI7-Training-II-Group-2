@@ -10,21 +10,21 @@ package com.flipkart.exception;
 @SuppressWarnings("serial")
 public class UserNotFoundException extends Exception {
 	
-	private String userEmailId;
+	private String userId;
 
 	/**
-	 * @param userEmailId
+	 * @param userId
 	 */
-	public UserNotFoundException(String userEmailId) {
-		this.userEmailId = userEmailId;
+	public UserNotFoundException(String userId) {
+		this.userId = userId;
 	}
 
 	/**
 	 * Getter Method
 	 * @return the userEmailId
 	 */
-	public String getUserEmailId() {
-		return userEmailId;
+	public String getUserId() {
+		return userId;
 	}
 	
 	/**
@@ -32,6 +32,6 @@ public class UserNotFoundException extends Exception {
 	 */
 	@Override
 	public String getMessage() {
-		return "User with User Email Id: " + userEmailId + " not found.";
+		return "User with User Id: " + userId + " not found.";
 	}
 }
