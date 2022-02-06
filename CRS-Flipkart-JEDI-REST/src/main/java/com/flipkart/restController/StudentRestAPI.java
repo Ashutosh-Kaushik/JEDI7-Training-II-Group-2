@@ -1,6 +1,9 @@
 package com.flipkart.restController;
 
         import com.flipkart.bean.Course;
+        import com.flipkart.bean.Student;
+        import com.flipkart.dao.StudentDaoImplementation;
+        import com.flipkart.dao.StudentDaoInterface;
         import com.flipkart.service.StudentInterface;
         import com.flipkart.service.StudentOperations;
 
@@ -25,6 +28,7 @@ package com.flipkart.restController;
 public class StudentRestAPI {
 
     StudentInterface studentInterface= StudentOperations.getInstance();
+    StudentDaoInterface studentDaoInterface= StudentDaoImplementation.getInstance();
     double fee;
     int invoiceId;
 
@@ -126,6 +130,21 @@ public class StudentRestAPI {
         }
 
         return registeredCourses;
+    }
+
+    @GET
+    @Path("/getStudent/{studentId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getStudent(
+            @PathParam("studentId") String studentId
+    ) {
+        String student = null;
+        try {
+            student = studentDaoInterface.getfeeStatus(studentId);
+        }catch(SQLException se) {
+            se.printStackTrace();
+        }
+        return student;
     }
 
 
