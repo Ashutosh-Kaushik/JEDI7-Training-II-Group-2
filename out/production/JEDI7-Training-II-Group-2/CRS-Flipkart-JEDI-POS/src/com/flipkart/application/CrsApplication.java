@@ -15,10 +15,9 @@ public class CrsApplication {
         final Logger logger = Logger.getLogger(CrsApplication.class);
         while(true){
             System.out.println("----------Welcome to Course Registration System----------");
-            System.out.println("Main Menu \n1. Register\n2. Login\n3.Update Password\n4. Exit");
+            System.out.println("Main Menu \n1. Register\n2. Login\n3. Update Password\n4. Exit");
             System.out.println("---------------------------------------------------------");
             System.out.println("Enter your choice:");
-            logger.debug("Abcdefg");
             BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
             int choice=Integer.parseInt(br.readLine());
             switch (choice) {

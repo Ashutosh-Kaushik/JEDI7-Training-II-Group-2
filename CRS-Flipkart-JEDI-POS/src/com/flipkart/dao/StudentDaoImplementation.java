@@ -102,7 +102,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public String getfeeStatus(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT paymentId FROM bookkeeper where studentId="+studentId;
+        String sql = "SELECT paymentId FROM bookkeeper where studentId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())
@@ -115,9 +115,9 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public ArrayList<Integer> registeredCoursesList(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM registrar where userId="+studentId;
-        PreparedStatement statement = conn.prepareStatement(sql);
-        ResultSet rs = statement.executeQuery();
+        PreparedStatement preparedStatement = conn.prepareStatement(SQLQueriesConstants.VIEW_REGISTERED_COURSES);
+        preparedStatement.setString(1, studentId);
+        ResultSet rs=preparedStatement.executeQuery();
         ArrayList<Integer> courses=new ArrayList<>();
         while(rs.next())
         {
@@ -134,7 +134,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_REGISTERCOURSE_QUERY);
             preparedStatement.setString(1, studentId);
             preparedStatement.setInt(2, course);
-            preparedStatement.setString(3, " NA ");
+            preparedStatement.setString(3, "0");
             preparedStatement.executeUpdate();
         }
     }
@@ -191,7 +191,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public ArrayList<GradeCard> viewGrades(String studentId) throws SQLException {
     ArrayList<GradeCard> gradeCards=new ArrayList<>();
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM registrar where userId="+studentId;
+        String sql = "SELECT * FROM registrar where userId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())
