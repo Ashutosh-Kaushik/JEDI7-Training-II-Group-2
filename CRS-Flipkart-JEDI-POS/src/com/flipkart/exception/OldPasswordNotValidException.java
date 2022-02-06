@@ -1,13 +1,15 @@
 package com.flipkart.exception;
 
+import java.sql.SQLException;
+
 @SuppressWarnings("serial")
-public class OldPasswordNotValidException extends Exception{
-	private int userId;
+public class OldPasswordNotValidException extends SQLException {
+	private String userId;
 
 	/**
 	 * @param userId
 	 */
-	public OldPasswordNotValidException(int userId) {
+	public OldPasswordNotValidException(String userId) {
 		this.userId = userId;
 	}
 
@@ -19,7 +21,7 @@ public class OldPasswordNotValidException extends Exception{
 	 * Getter Method
 	 * @return the userId
 	 */
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
@@ -28,6 +30,6 @@ public class OldPasswordNotValidException extends Exception{
 	 */
 	@Override
 	public String getMessage() {
-		return "Old Password is not valid";
+		return "Old Password is not valid Or User Id is incorrect";
 	}
 }

@@ -10,28 +10,28 @@ package com.flipkart.exception;
 @SuppressWarnings("serial")
 public class CourseAlreadyRegisteredException extends Exception {
 
-	private int courseId;
+//	private int courseId;
 
 	/**
-	 * @param courseId
+	 * @param
 	 */
-	public CourseAlreadyRegisteredException(int courseId) {
-		this.courseId = courseId;
+	public CourseAlreadyRegisteredException() {
+
 	}
 
 	/**
 	 * Getter Method
 	 * @return the courseId
 	 */
-	public int getCourseId() {
-		return courseId;
-	}
+//	public int getCourseId() {
+//		return courseId;
+//	}
 	
 	/**
 	 * Message thrown by exception
 	 */
 	@Override
 	public String getMessage() {
-		return "You have already registered for the course with Course Id: " + courseId + ".";
+		return "You have already registered for the course with entered course";
 	}
 }

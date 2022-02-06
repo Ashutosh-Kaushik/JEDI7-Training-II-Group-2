@@ -4,5 +4,5 @@ import java.sql.SQLException;
 
 public interface UpdatePasswordInterface {
 
-    String updatePassword(String userId,String oldpassword,String newpassword) throws SQLException;
+    boolean updatePassword(String userId,String oldpassword,String newpassword) throws SQLException;
 }
