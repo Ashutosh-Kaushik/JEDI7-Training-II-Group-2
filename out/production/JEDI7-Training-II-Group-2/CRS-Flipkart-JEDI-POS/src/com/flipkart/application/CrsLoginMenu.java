@@ -2,6 +2,8 @@ package com.flipkart.application;
 
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.ProfessorService;
 import com.flipkart.dao.AdminDaoImplementation;
 import com.flipkart.dao.StudentDaoImplementation;
@@ -14,7 +16,7 @@ import java.sql.SQLException;
 public class CrsLoginMenu {
 
 
-    public void crsLoginMenu() throws IOException, SQLException {
+    public void crsLoginMenu() throws IOException, SQLException, UserNotFoundException, CourseAlreadyRegisteredException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the User Type\n1.Student \n2.Professor \n3.Admin");
         int userType=Integer.parseInt(br.readLine());
@@ -36,9 +38,13 @@ public class CrsLoginMenu {
                     CrsStudentMenu crsStudentMenu=new CrsStudentMenu();
                     crsStudentMenu.studentMenu(student);
                 }
+                else if (student==null){
+                    throw new UserNotFoundException(userId);
+                }
                 else{
-                    System.out.println("Invalid User credentials or student is not approved");
-                    return;
+                    System.out.println("-----------------Cant LOGIN--------------------");
+                    System.out.println("--- Student has not been approved yet !! -------");
+                    System.out.println("------------------------------------------------");
                 }
                 break;
             case 2:

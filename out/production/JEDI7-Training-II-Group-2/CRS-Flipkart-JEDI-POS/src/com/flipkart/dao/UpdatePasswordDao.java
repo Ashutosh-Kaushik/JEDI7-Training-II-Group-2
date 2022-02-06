@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.application.CrsApplication;
 import com.flipkart.bean.Student;
 import com.flipkart.constants.SQLQueriesConstants;
+import com.flipkart.exception.OldPasswordNotValidException;
 import com.flipkart.utils.DBUtils;
 import org.apache.log4j.Logger;
 
@@ -15,7 +16,7 @@ public class UpdatePasswordDao implements UpdatePasswordInterface{
 
     final Logger logger = Logger.getLogger(UpdatePasswordDao.class);
     @Override
-    public String updatePassword(String userId, String oldpassword,String newpassword) throws SQLException {
+    public boolean updatePassword(String userId, String oldpassword,String newpassword) throws SQLException {
         Connection connection = DBUtils.getConnection();
         if(connection==null)
             System.out.println("connection not established");
@@ -30,21 +31,24 @@ public class UpdatePasswordDao implements UpdatePasswordInterface{
                 preparedStatement.setString(1, newpassword);
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected == 1) {
-                    logger.info("Password Updated Successfully!!");
+                    return true;
                 } else {
-                    logger.info("Password not updated");
+                    logger.info("User id does not exist");
+                    return false;
                 }
             }
             else
             {
-                logger.info("User Credentials Not Correct");
+                return false;
             }
-        }
+
+            }
         catch (SQLException e)
         {
-            logger.info("User Credentials Norrrrt Correct");
+            logger.info("User id does not exist");
             e.printStackTrace();
+            return false;
         }
-        return null;
+
     }
 }
