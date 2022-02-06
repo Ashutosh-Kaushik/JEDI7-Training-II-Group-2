@@ -4,6 +4,10 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.dao.ProfessorOperations;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,9 +15,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+
 public class ProfessorService implements ProfessorServiceInterface {
     BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
     ProfessorOperations profOp=new ProfessorOperations();
+
     public Professor validateCredentials(String userId,String password){
 
         return profOp.validateCredentialsWithDB(userId,password);
