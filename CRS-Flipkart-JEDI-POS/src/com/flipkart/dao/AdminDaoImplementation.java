@@ -105,7 +105,7 @@ public class AdminDaoImplementation implements AdminDaoInterface{
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             ok = false;
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return ok;

@@ -66,7 +66,10 @@ public class ProfessorService implements ProfessorServiceInterface {
                 break;
             }
             else{
+                if((choice-1)<courses.size())
                 profOp.registerCoursesWithDB(professor,courses.get(choice-1));
+                else
+                    System.out.println("Enter Correct index number");
             }
         }
     }
