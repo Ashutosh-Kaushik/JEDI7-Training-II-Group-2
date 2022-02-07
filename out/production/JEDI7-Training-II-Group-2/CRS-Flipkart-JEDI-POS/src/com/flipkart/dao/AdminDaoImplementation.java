@@ -157,6 +157,26 @@ public class AdminDaoImplementation implements AdminDaoInterface{
         return ok;
     }
 
+    public boolean isApproved(String studentId) throws Exception{
+        Connection con = DBUtils.getConnection();
+        String sql = "select * from student where studentId=? and isApproved = 1";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1,studentId);
+        ResultSet rs =  stmt.executeQuery();
+        while(rs.next()) {
+            return true;
+        }
+        return false;
+    }
+    public void approveStudents(String studentId) throws Exception {
+            String id = studentId;
+            String sql1 = "UPDATE student SET isApproved = 1 where studentId = ?";
+            Connection con = DBUtils.getConnection();
+            PreparedStatement statement = con.prepareStatement(sql1);
+            statement.setString(1,id);
+            statement.executeUpdate();
+    }
+
 //
 //    @Override
 //    public ArrayList<Grade> fetchGrade(int userId) {

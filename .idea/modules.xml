@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CRS-Flipkart-JEDI-REST/CRS-Flipkart-JEDI-REST.iml" filepath="$PROJECT_DIR$/CRS-Flipkart-JEDI-REST/CRS-Flipkart-JEDI-REST.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CRS-Flipkart-JEDI-REST/CRS-Flipkart-JEDI-Dropwizard.iml" filepath="$PROJECT_DIR$/CRS-Flipkart-JEDI-REST/CRS-Flipkart-JEDI-Dropwizard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/CRS-Flipkart-JEDI-REST.iml" filepath="$PROJECT_DIR$/java/CRS-Flipkart-JEDI-REST.iml" />
       <module fileurl="file://$PROJECT_DIR$/JEDI7-Training-II-Group-2.iml" filepath="$PROJECT_DIR$/JEDI7-Training-II-Group-2.iml" />
     </modules>
   </component>
