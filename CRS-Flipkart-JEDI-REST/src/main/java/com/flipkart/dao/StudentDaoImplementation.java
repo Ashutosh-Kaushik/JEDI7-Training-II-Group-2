@@ -66,37 +66,33 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         return null;
     }
 
-    public String addStudent(String userId, String password, String studentName, String emaiId, String contactNo,int semester ) throws SQLException {
+    public void addStudent(Student student) throws Exception {
         Connection connection = DBUtils.getConnection();
-        if(connection==null)System.out.println("connection not established");
-
-        Statement stmt = connection.createStatement();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_USER_QUERY);
-            preparedStatement.setString(1, userId);
-            preparedStatement.setString(2, password);
-            preparedStatement.setString(3, studentName);
-            preparedStatement.setString(4, emaiId);
-            preparedStatement.setString(5, contactNo);
+            preparedStatement.setString(1, student.getUserId());
+            preparedStatement.setString(2, student.getPassword());
+            preparedStatement.setString(3, student.getUserName());
+            preparedStatement.setString(4, student.getEmailId());
+            preparedStatement.setString(5, student.getContactNo());
 
             int rows = preparedStatement.executeUpdate();
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT_QUERY);
-            preparedStatement1.setString(1, userId);
-            preparedStatement1.setInt(2, semester);
+            preparedStatement1.setString(1, student.getUserId());
+            preparedStatement1.setInt(2, student.getSemester());
             preparedStatement1.setString(3, " NA ");
             preparedStatement1.setInt(4, 0);
             preparedStatement1.setInt(5, 0);
             int rowsAffected1 = preparedStatement1.executeUpdate();
             if (rowsAffected1 == 1 && rows == 1) {
-                //logger.info("Student is registered");
+                System.out.println("Student is registered");
             }
         }
         catch(SQLException e)
         {
-            //logger.info("Student with the ID exists. Try Again!!");
+            System.out.println("Student with the ID exists. Try Again!!");
         }
-        return null;
     }
 
     @Override
@@ -140,7 +136,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public String getfeeStatus(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT paymentId FROM bookkeeper where studentId="+studentId;
+        String sql = "SELECT paymentId FROM bookkeeper where studentId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())
@@ -153,7 +149,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     @Override
     public ArrayList<Integer> registeredCoursesList(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM registrar where userId="+studentId;
+        String sql = "SELECT * FROM registrar where userId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         ArrayList<Integer> courses=new ArrayList<>();
@@ -229,7 +225,7 @@ public class StudentDaoImplementation implements StudentDaoInterface {
     public ArrayList<GradeCard> viewGrades(String studentId) throws SQLException {
     ArrayList<GradeCard> gradeCards=new ArrayList<>();
         Connection conn = DBUtils.getConnection();
-        String sql = "SELECT * FROM registrar where userId="+studentId;
+        String sql = "SELECT * FROM registrar where userId='"+studentId+"'";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while(rs.next())

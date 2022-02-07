@@ -27,10 +27,10 @@ public class AdminDaoImplementation implements AdminDaoInterface{
             Connection con = DBUtils.getConnection();
             Statement stmt = con.createStatement();
             if(con==null)System.out.println("connection not established");
-            String sql = "insert into user values(" + professor.getUserId() + ", '" + professor.getPassword()+ "' , '"+ professor.getUserName()+ "', '" + professor.getEmailId() + "' , '" + professor.getContactNo() + "')";
+            String sql = "insert into user values('" + professor.getUserId() + "', '" + professor.getPassword()+ "' , '"+ professor.getUserName()+ "', '" + professor.getEmailId() + "' , '" + professor.getContactNo() + "')";
             stmt.executeUpdate(sql);
 
-            sql = "insert into professor values("+ professor.getUserId()+ " ,' "+professor.getAreaOfExpertise()+"',' "+professor.getYearsOfExperience()+"')";
+            sql = "insert into professor values('"+ professor.getUserId()+ "' ,' "+professor.getAreaOfExpertise()+"',' "+professor.getYearsOfExperience()+"')";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             ok = false;
@@ -132,7 +132,25 @@ public class AdminDaoImplementation implements AdminDaoInterface{
         }
         return ok;
     }
-
+    public boolean isApproved(String studentId) throws Exception{
+        Connection con = DBUtils.getConnection();
+        String sql = "select * from student where studentId=? and isApproved = 1";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1,studentId);
+        ResultSet rs =  stmt.executeQuery();
+        while(rs.next()) {
+            return true;
+        }
+        return false;
+    }
+    public void approveStudents(String studentId) throws Exception {
+        String id = studentId;
+        String sql1 = "UPDATE student SET isApproved = 1 where studentId = ?";
+        Connection con = DBUtils.getConnection();
+        PreparedStatement statement = con.prepareStatement(sql1);
+        statement.setString(1,id);
+        statement.executeUpdate();
+    }
 //
 //    @Override
 //    public ArrayList<Grade> fetchGrade(int userId) {

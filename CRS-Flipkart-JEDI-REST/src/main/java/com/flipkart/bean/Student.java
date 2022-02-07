@@ -7,7 +7,7 @@ public class Student extends User{
     private String grade;
     private String feeStatus;
     private boolean isApproved;
-
+    public  Student(){}
     public Student(String userId, String userName, String emailId, String password, String contactNo, String userId1, int semester, String grade, String feeStatus,boolean isApproved) {
         super(userId, userName, emailId, password, contactNo);
         this.userId = userId1;

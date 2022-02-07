@@ -11,9 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+
 public class ProfessorService implements ProfessorServiceInterface {
     BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
     ProfessorOperations profOp=new ProfessorOperations();
+
     public Professor validateCredentials(String userId,String password){
 
         return profOp.validateCredentialsWithDB(userId,password);
@@ -21,53 +23,16 @@ public class ProfessorService implements ProfessorServiceInterface {
     public ArrayList<Course> viewAllCourses() throws SQLException{
         return profOp.viewCoursesWithDB();
     }
-    public Map<String, ArrayList<String>> viewEnrolledStudents(Professor professor) throws SQLException {
+    public Map<String, ArrayList<String>> viewEnrolledStudents(String professor) throws SQLException {
         Map<String,ArrayList<String>> students=profOp.viewEnrolledStudentsWithDB(professor);
         return students;
     }
-    public void assignGrades(Professor professor) throws SQLException, IOException {
-        Map<String,ArrayList<String>> courseWithStudents=profOp.viewEnrolledStudentsWithDB(professor);
-        System.out.println("Enter the Course Index and Students index ");
-        int courseindex=1;
-        for(String CourseName:courseWithStudents.keySet()){
-            System.out.println(courseindex+". "+"("+CourseName+")");
-            int studentsIndex=1;
-            for(String student:courseWithStudents.get(CourseName)){
-                System.out.println("\t"+studentsIndex+". ("+student+")");
-                studentsIndex++;
-            }
-            courseindex++;
-        }
-        System.out.println("Pick course Id");
-        int courseChoice=Integer.parseInt(br.readLine());
-        System.out.println("Pick student Id");
-        String studentChoice=br.readLine();
-        System.out.println("Enter the grade between (A-F)");
-        String Grade=br.readLine();
-        profOp.provideGrade(courseChoice,studentChoice,Grade);
+    public void assignGrades(String professorId, int courseId, String studentId, String grade) throws SQLException, IOException {
 
-
-
+        profOp.provideGrade(courseId,studentId,grade);
     }
-    public void registerCourses(Professor professor) throws SQLException, IOException {
-        ArrayList<Course> courses=profOp.viewAvailableCoursesWithDB(professor);
-        while(true) {
-            System.out.println("---Enter the Index which you want to register(Enter 0 to exit)");
-            System.out.println("Index." +"CourseName-CourseId");
-            int index=1;
-            for (Course c : courses) {
-                System.out.println(index+".\t ("+c.getCourseId() + "\t-\t" + c.getCourseName()+")");
-                index++;
-            }
-
-            int choice=Integer.parseInt(br.readLine());
-            if(choice==0){
-                break;
-            }
-            else{
-                profOp.registerCoursesWithDB(professor,courses.get(choice-1));
-            }
-        }
+    public void registerCourses(String professorId,int courseId) throws SQLException, IOException {
+        profOp.registerCoursesWithDB(professorId,courseId);
     }
 
 }

@@ -63,6 +63,35 @@ public class StudentDaoImplementation implements StudentDaoInterface {
         return null;
     }
 
+    public void addStudent(Student student) throws Exception {
+        Connection connection = DBUtils.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstants.ADD_USER_QUERY);
+            preparedStatement.setString(1, student.getUserId());
+            preparedStatement.setString(2, student.getPassword());
+            preparedStatement.setString(3, student.getUserName());
+            preparedStatement.setString(4, student.getEmailId());
+            preparedStatement.setString(5, student.getContactNo());
+
+            int rows = preparedStatement.executeUpdate();
+
+            PreparedStatement preparedStatement1 = connection.prepareStatement(SQLQueriesConstants.ADD_STUDENT_QUERY);
+            preparedStatement1.setString(1, student.getUserId());
+            preparedStatement1.setInt(2, student.getSemester());
+            preparedStatement1.setString(3, " NA ");
+            preparedStatement1.setInt(4, 0);
+            preparedStatement1.setInt(5, 0);
+            int rowsAffected1 = preparedStatement1.executeUpdate();
+            if (rowsAffected1 == 1 && rows == 1) {
+                logger.info("Student is registered");
+            }
+        }
+        catch(SQLException e)
+        {
+            logger.info("Student with the ID exists. Try Again!!");
+        }
+    }
+
     @Override
     public Student getStudent(String studentId) throws SQLException {
         Connection conn = DBUtils.getConnection();

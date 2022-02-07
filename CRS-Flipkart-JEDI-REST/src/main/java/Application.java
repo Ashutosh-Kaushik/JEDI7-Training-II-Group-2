@@ -1,3 +1,4 @@
+import com.flipkart.restController.AdminRestAPI;
 import com.flipkart.restController.ProfessorRestAPI;
 import com.flipkart.restController.StudentRestAPI;
 import io.dropwizard.setup.Bootstrap;
@@ -25,6 +26,8 @@ public class Application extends io.dropwizard.Application<ApplicationConfigurat
         environment.jersey().register(studentRestAPI);
         final ProfessorRestAPI professorRestAPI = new ProfessorRestAPI();
         environment.jersey().register(professorRestAPI);
+        final AdminRestAPI adminRestAPI = new AdminRestAPI();
+        environment.jersey().register(adminRestAPI);
         // nothing to do yet
     }
 

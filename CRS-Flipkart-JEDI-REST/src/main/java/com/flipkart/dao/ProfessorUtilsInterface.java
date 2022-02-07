@@ -11,9 +11,9 @@ public interface ProfessorUtilsInterface {
     public Professor validateCredentialsWithDB(String userId,String password) throws ClassNotFoundException, SQLException;
     public ArrayList<Course> viewCoursesWithDB() throws SQLException, ClassNotFoundException;
 
-    public void registerCoursesWithDB(Professor professor,Course course) throws SQLException;
-    public ArrayList<Course> viewAvailableCoursesWithDB(Professor professor) throws SQLException ;
-    public Map<String, ArrayList<String>> viewEnrolledStudentsWithDB(Professor professor) throws SQLException;
+    public void registerCoursesWithDB(String professorId,int courseId) throws SQLException;
+    public ArrayList<Course> viewAvailableCoursesWithDB(String professorId) throws SQLException ;
+    public Map<String, ArrayList<String>> viewEnrolledStudentsWithDB(String professorId) throws SQLException;
     public void provideGrade(int courseId,String studentId,String Grade) throws SQLException;
 
-    }
+}

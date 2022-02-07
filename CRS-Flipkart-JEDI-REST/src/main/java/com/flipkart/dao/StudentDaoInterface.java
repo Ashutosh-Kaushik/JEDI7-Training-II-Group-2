@@ -28,5 +28,6 @@ public interface StudentDaoInterface
     String removeStudent(String studentId) throws SQLException;
 
     ArrayList<GradeCard> viewGrades(String studentId) throws SQLException;
+    public void addStudent(Student student) throws Exception;
 
 }
